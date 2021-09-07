@@ -109,7 +109,7 @@ export default {
       this.$store
         .dispatch("user/login", this.loginForm)
         .then(res => {
-          this.$router.push({ path: "/" });
+          this.$router.push({ path: "/test" });
           this.loading = false;
         })
         .catch(() => {

@@ -12,4 +12,11 @@ export default {
       method: "postJson",
       config: {}
   },
+
+  // 注册
+  register: {
+      url: "/user/register",
+      method: "postJson",
+      config: {}
+  },
 };

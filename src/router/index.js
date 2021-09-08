@@ -69,12 +69,13 @@ export const asyncRoutes = [
   {
     path: "/",
     component: Layout,
+    redirect: "/index",
     children: [
       {
         path: "index",
         component: () => import("@/views/testPage/index"),
         name: "analyse",
-        meta: { title: "数据分析", icon: "el-icon-s-data", affix: true }
+        meta: { title: "数据分析", icon: "el-icon-s-data", affix: true, roles: ["admin"] }
       }
     ]
   },
@@ -142,8 +143,7 @@ export const asyncRoutes = [
     redirect: "/borrow/index",
     meta: {
       title: "借阅图书",
-      icon: "lock",
-      roles: ["admin", "borrow"]
+      roles: ["admin", "borrower"]
     },
     children: [
       {
@@ -160,8 +160,7 @@ export const asyncRoutes = [
     redirect: "/myborrow/index",
     meta: {
       title: "我的借阅信息",
-      icon: "lock",
-      roles: ["admin", "borrow"]
+      roles: ["admin", "borrower"]
     },
     children: [
       {
@@ -169,6 +168,24 @@ export const asyncRoutes = [
         component: () => import("@/views/testPage/index"),
         name: "myborrow",
         meta: { title: "我的借阅信息", icon: "el-icon-notebook-1" }
+      }
+    ]
+  },
+  {
+    path: "/editpwd",
+    component: Layout,
+    redirect: "/editpwd/index",
+    meta: {
+      title: "密码修改",
+      roles: ["admin", "borrower"]
+    },
+    hidden: true,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/testPage/index"),
+        name: "editpwd",
+        meta: { title: "密码修改"}
       }
     ]
   },

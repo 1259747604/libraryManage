@@ -10,7 +10,7 @@
         label-position="left"
       >
         <div class="title-container">
-          <h3 class="title">TT测试系统</h3>
+          <h3 class="title">图书管理系统</h3>
         </div>
 
         <el-form-item prop="username">
@@ -78,8 +78,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: "admin",
-        password: "admin"
+        username: "",
+        password: ""
       },
       passwordType: "password",
       capsTooltip: false,
@@ -113,7 +113,11 @@ export default {
       this.$store
         .dispatch("user/login", this.loginForm)
         .then(res => {
-          this.$router.push({ path: "/" });
+          if (res.data.roles.includes("admin")) {
+            this.$router.push({ path: "/" });
+          } else {
+            this.$router.push({ path: "/borrow/index" });
+          }
           this.loading = false;
         })
         .catch(() => {

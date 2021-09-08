@@ -33,9 +33,9 @@ const actions = {
         .login({ userName: username.trim(), password: password })
         .then(res => {
           if (res.status) {
-            commit("SET_TOKEN", res.data);
-            setToken(res.data);
-            localStorage.setItem("token", res.data);
+            commit("SET_TOKEN", res.data.token);
+            setToken(res.data.token);
+            localStorage.setItem("token", res.data.token);
             resolve(res);
           } else {
             resolve(res);

@@ -15,7 +15,10 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="logout">
+          <router-link to="/editpwd/index">
+            <el-dropdown-item>密码修改</el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>

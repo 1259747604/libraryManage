@@ -16,7 +16,7 @@
       <el-button type="primary" icon="el-icon-plus" @click="openAddDialog(0)"
         >新增</el-button
       >
-      <el-button icon="el-icon-delete">批量删除</el-button>
+      <el-button icon="el-icon-delete" @click="batchDel">批量删除</el-button>
     </div>
     <!-- 数据 -->
     <div class="table">
@@ -38,7 +38,9 @@
               @click="openAddDialog(1, scope.row)"
               >编辑</el-button
             >
-            <el-button type="danger" size="small">删除</el-button>
+            <el-button type="danger" size="small" @click="del([scope.row.id])"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -126,6 +128,36 @@ export default {
 
     handleSelectionChange(val) {
       this.multipleSelection = val;
+    },
+
+    batchDel() {
+      let ids = this.multipleSelection.map(item => item.id);
+      if (ids.length) {
+        this.del(ids);
+      }
+    },
+
+    async del(ids) {
+      this.$confirm("此操作将删除分类下所有书籍, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(async () => {
+          let res = await this.$api.book.delType({ ids });
+          if (res.status) {
+            this.$message.success("删除成功");
+            this.getDt();
+          } else {
+            this.$message.error("删除失败");
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     }
   }
 };

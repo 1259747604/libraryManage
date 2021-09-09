@@ -16,5 +16,11 @@ export default {
     url: "/book/editType",
     method: "postJson",
     config: {}
+  },
+  // 删除分类
+  delType: {
+    url: "/book/delType",
+    method: "postJson",
+    config: {}
   }
 };

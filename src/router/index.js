@@ -91,13 +91,13 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/bookManage"),
         name: "bookmanage",
         meta: { title: "图书管理", icon: "el-icon-reading" }
       },
       {
         path: "booktype",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/booktype"),
         name: "booktype",
         meta: { title: "图书分类管理", icon: "el-icon-folder-opened" }
       }

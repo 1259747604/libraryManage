@@ -2,10 +2,12 @@ import { get, post, postForm, postJson, postFormdata } from "./request";
 
 import user from "./config/user";
 import upload from "./config/upload";
+import book from "./config/book";
 
 const apiList = {
     user,
-    upload
+    upload,
+    book
 };
 
 const fn = { get, post, postForm, postJson, postFormdata };

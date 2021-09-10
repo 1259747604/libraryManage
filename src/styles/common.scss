@@ -8,11 +8,32 @@
   margin-left: 20px;
 }
 
+.flex_d-c {
+  display: flex;
+  flex-direction: column;
+}
+
 .flex_ai-c {
   display: flex;
   align-items: center;
 }
 
+.flex_jc-fe {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .flex-1 {
   flex: 1;
+}
+
+
+.w-200 {
+  width: 200px;
+}
+.w-300 {
+  width: 300px;
+}
+.w-400 {
+  width: 400px;
 }

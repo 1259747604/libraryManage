@@ -75,7 +75,12 @@ export const asyncRoutes = [
         path: "index",
         component: () => import("@/views/testPage/index"),
         name: "analyse",
-        meta: { title: "数据分析", icon: "el-icon-s-data", affix: true, roles: ["admin"] }
+        meta: {
+          title: "数据分析",
+          icon: "el-icon-s-data",
+          affix: true,
+          roles: ["admin"]
+        }
       }
     ]
   },
@@ -94,6 +99,17 @@ export const asyncRoutes = [
         component: () => import("@/views/bookManage"),
         name: "bookmanage",
         meta: { title: "图书管理", icon: "el-icon-reading" }
+      },
+      {
+        path: "add",
+        hidden: true,
+        component: () => import("@/views/bookManage/add"),
+        name: "bookAdd",
+        meta: {
+          title: "图书管理",
+          icon: "el-icon-reading",
+          activeMenu: "/bookmanage/index"
+        }
       },
       {
         path: "booktype",
@@ -185,7 +201,7 @@ export const asyncRoutes = [
         path: "index",
         component: () => import("@/views/testPage/index"),
         name: "editpwd",
-        meta: { title: "密码修改"}
+        meta: { title: "密码修改" }
       }
     ]
   },

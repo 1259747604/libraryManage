@@ -22,5 +22,35 @@ export default {
     url: "/book/delType",
     method: "postJson",
     config: {}
+  },
+  // 新增书籍
+  addBook: {
+    url: "/book/addBook",
+    method: "postJson",
+    config: {}
+  },
+  // 书籍列表
+  bookList: {
+    url: "/book/bookList",
+    method: "postJson",
+    config: {}
+  },
+  // 查询图书
+  getBook: {
+    url: "/book/getBook",
+    method: "postJson",
+    config: {}
+  },
+  // 修改图书
+  editBook: {
+    url: "/book/editBook",
+    method: "postJson",
+    config: {}
+  },
+  // 删除图书
+  delBook: {
+    url: "/book/delBook",
+    method: "postJson",
+    config: {}
   }
 };

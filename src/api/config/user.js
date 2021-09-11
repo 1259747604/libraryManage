@@ -32,5 +32,19 @@ export default {
     url: "/user/editUserStatus",
     method: "postJson",
     config: {}
+  },
+
+  // 检查密码
+  checkPwd: {
+    url: "/user/checkPwd",
+    method: "postJson",
+    config: {}
+  },
+
+  // 检查密码
+  updatePwd: {
+    url: "/user/updatePwd",
+    method: "postJson",
+    config: {}
   }
 };

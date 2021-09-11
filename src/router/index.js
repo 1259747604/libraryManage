@@ -199,7 +199,7 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/editPassword/index"),
         name: "editpwd",
         meta: { title: "密码修改" }
       }

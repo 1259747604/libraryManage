@@ -113,6 +113,9 @@ export default {
       this.$store
         .dispatch("user/login", this.loginForm)
         .then(res => {
+          if (!res.status) {
+            this.$message.error(res.msg);
+          }
           if (res.data.roles.includes("admin")) {
             this.$router.push({ path: "/" });
           } else {

@@ -52,5 +52,23 @@ export default {
     url: "/book/delBook",
     method: "postJson",
     config: {}
-  }
+  },
+  // 申请借阅
+  applyBorrow: {
+    url: "/book/applyBorrow",
+    method: "postJson",
+    config: {}
+  },
+  // 借阅列表
+  borrowList: {
+    url: "/book/borrowList",
+    method: "postJson",
+    config: {}
+  },
+  // 修改借阅状态
+  editBorrowStatus: {
+    url: "/book/editBorrowStatus",
+    method: "postJson",
+    config: {}
+  },
 };

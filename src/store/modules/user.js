@@ -6,7 +6,8 @@ const state = {
   token: getToken(),
   name: "",
   avatar: "",
-  roles: []
+  roles: [],
+  userInfo: {}
 };
 
 const mutations = {
@@ -21,6 +22,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles;
+  },
+  SET_USERINFO: (state, userInfo) => {
+    state.userInfo = userInfo;
   }
 };
 
@@ -68,6 +72,7 @@ const actions = {
           commit("SET_ROLES", roles);
           commit("SET_NAME", userName);
           commit("SET_AVATAR", icon);
+          commit("SET_USERINFO", data);
           resolve(data);
         })
         .catch(error => {

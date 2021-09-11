@@ -147,7 +147,7 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/borrowManage/index"),
         name: "borrowManage",
         meta: { title: "借阅信息管理", icon: "dashboard" }
       }
@@ -164,7 +164,7 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/borrowPage/index"),
         name: "borrow",
         meta: { title: "借阅图书", icon: "el-icon-paperclip" }
       }

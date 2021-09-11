@@ -54,6 +54,11 @@
               <el-input v-model="form.isbn"></el-input>
             </div>
           </el-form-item>
+          <el-form-item label="简介" prop="desc">
+            <div class="w-400">
+              <el-input type="textarea" :rows="5" v-model="form.desc"></el-input>
+            </div>
+          </el-form-item>
           <el-form-item label="书籍封面" prop="img">
             <div class="w-400">
               <el-upload
@@ -108,7 +113,8 @@ export default {
         bookNum: "",
         bookPrice: "",
         isbn: "",
-        img: ""
+        img: "",
+        desc: ""
       },
       rules: {
         bookName: [
@@ -130,7 +136,8 @@ export default {
           { required: true, message: "请输入书籍价格", trigger: "blur" },
           { validator: validateBookPrice, trigger: "blur" }
         ],
-        img: [{ required: true, message: "请上传书籍封面", trigger: "blur" }]
+        img: [{ required: true, message: "请上传书籍封面", trigger: "blur" }],
+        desc: [{ required: true, message: "请填写简介", trigger: "blur" }]
       },
       typeList: [],
       isEdit: false,
@@ -159,7 +166,8 @@ export default {
           bookNum: res.data.bookNum,
           bookPrice: res.data.bookPrice,
           isbn: res.data.isbn,
-          img: res.data.img
+          img: res.data.img,
+          desc: res.data.desc,
         };
       } else {
         this.$message.error(res.msg);
@@ -197,7 +205,8 @@ export default {
             bookNum: this.form.bookNum,
             bookPrice: this.form.bookPrice,
             isbn: this.form.isbn,
-            img: this.form.img
+            img: this.form.img,
+            desc: this.form.desc,
           };
           if (this.isEdit) {
             params.id = this.originInfo.id;

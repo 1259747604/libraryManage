@@ -2,16 +2,16 @@
   <div class="container">
     <!-- 书籍分类库存排行 -->
     <div class="one">
-      <v-chart class="chart" :option="chart1" />
+      <v-chart class="chart" :option="chart1" autoresize />
     </div>
     <div class="flex_jc-sb h_per-49">
       <!-- 年龄段占比 -->
       <div class="two">
-        <v-chart class="chart" :option="chart2" />
+        <v-chart class="chart" :option="chart2" autoresize />
       </div>
       <!-- 男女占比 -->
       <div class="three">
-        <v-chart class="chart" :option="chart3" />
+        <v-chart class="chart" :option="chart3" autoresize />
       </div>
     </div>
   </div>
@@ -46,33 +46,16 @@ export default {
   },
   data() {
     return {
-      char1Dt: [
-        { name: "1", value: "100" },
-        { name: "2", value: "99" },
-        { name: "3", value: "80" },
-        { name: "4", value: "70" },
-        { name: "5", value: "50" },
-        { name: "6", value: "10" },
-        { name: "7", value: "10" },
-        { name: "8", value: "10" },
-        { name: "9", value: "10" }
-      ],
-      char2Dt: [
-        { name: "20岁以下", value: "100" },
-        { name: "20-40岁", value: "99" },
-        { name: "40岁以上", value: "80" }
-      ],
-      char3Dt: [
-        { name: "男", value: "100" },
-        { name: "女", value: "99" }
-      ]
+      chart1Dt: [],
+      chart2Dt: [],
+      chart3Dt: []
     };
   },
   computed: {
     chart1() {
       return {
         title: {
-          text: "书籍分类库存排行",
+          text: "书籍分类数量排行",
           left: "center"
         },
         tooltip: {
@@ -81,16 +64,16 @@ export default {
         },
         xAxis: {
           type: "category",
-          data: this.char1Dt.map(item => item.name)
+          data: this.chart1Dt.map(item => item.name)
         },
         yAxis: {
           type: "value"
         },
         series: [
           {
-            name: "char1Dt",
+            name: "chart1Dt",
             type: "bar",
-            data: this.char1Dt,
+            data: this.chart1Dt,
             barWidth: 30,
             itemStyle: {
               color: "#44e6c6"
@@ -139,7 +122,7 @@ export default {
               position: "center"
             },
             avoidLabelOverlap: false,
-            data: this.char2Dt,
+            data: this.chart2Dt,
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
@@ -177,7 +160,7 @@ export default {
             type: "pie",
             radius: "70%",
             center: ["50%", "60%"],
-            data: this.char3Dt,
+            data: this.chart3Dt,
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
@@ -188,6 +171,21 @@ export default {
           }
         ]
       };
+    }
+  },
+  mounted() {
+    this.getDt();
+  },
+  methods: {
+    async getDt() {
+      let res = await this.$api.chart.getChartDt();
+      if (res.status) {
+        this.chart1Dt = res.data.chart1Dt;
+        this.chart2Dt = res.data.chart2Dt;
+        this.chart3Dt = res.data.chart3Dt;
+      } else {
+        this.$message.error("数据获取失败");
+      }
     }
   }
 };
@@ -203,6 +201,7 @@ export default {
 .one {
   padding: 20px;
   height: 49%;
+  border-radius: 20px;
   background: #ffffff;
   box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
   .chart {
@@ -213,6 +212,7 @@ export default {
   padding: 20px;
   width: 49%;
   height: 100%;
+  border-radius: 20px;
   background: #ffffff;
   box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
 }
@@ -220,6 +220,7 @@ export default {
   padding: 20px;
   width: 49%;
   height: 100%;
+  border-radius: 20px;
   background: #ffffff;
   box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
 }

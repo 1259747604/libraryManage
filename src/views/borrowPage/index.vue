@@ -248,7 +248,7 @@ export default {
             color: #d7d7d7;
           }
           .desc {
-            margin-top: 20px;
+            margin-top: 10px;
             height: 36px;
             overflow: hidden;
             color: #383838;

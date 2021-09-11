@@ -181,7 +181,7 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/borrowPage/myBorrow"),
         name: "myborrow",
         meta: { title: "我的借阅信息", icon: "el-icon-notebook-1" }
       }

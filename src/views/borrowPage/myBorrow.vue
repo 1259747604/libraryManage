@@ -3,9 +3,6 @@
     <!-- 筛选 -->
     <div class="condition">
       <el-form inline :model="conditionForm">
-        <el-form-item label="用户名">
-          <el-input v-model="conditionForm.userName" clearable></el-input>
-        </el-form-item>
         <el-form-item label="状态">
           <el-select
             v-model="conditionForm.status"
@@ -48,44 +45,29 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <div v-if="scope.row.status === 0">
-              <el-button
-                type="primary"
-                size="small"
-                @click="handleStatus(1, scope.row)"
-                >同意借阅</el-button
+            <div>
+              <el-link
+                :type="
+                  [
+                    'primary',
+                    'info',
+                    'danger',
+                    'success',
+                    'warning',
+                    'warning'
+                  ][scope.row.status]
+                "
+                >{{
+                  [
+                    "申请中",
+                    "借阅中",
+                    "拒绝借阅",
+                    "已归还",
+                    "超时未归还",
+                    "超时已归还"
+                  ][scope.row.status]
+                }}</el-link
               >
-              <el-button
-                type="danger"
-                size="small"
-                @click="handleStatus(2, scope.row)"
-                >拒绝借阅</el-button
-              >
-            </div>
-            <div v-if="scope.row.status === 1">
-              <el-button
-                type="primary"
-                size="small"
-                @click="handleStatus(3, scope.row)"
-                >同意归还</el-button
-              >
-            </div>
-            <div v-if="scope.row.status === 2">
-              <el-link type="info">已拒绝借阅</el-link>
-            </div>
-            <div v-if="scope.row.status === 3">
-              <el-link type="success">已归还</el-link>
-            </div>
-            <div v-if="scope.row.status === 4">
-              <el-button
-                type="warning"
-                size="small"
-                @click="handleStatus(5, scope.row)"
-                >超时归还</el-button
-              >
-            </div>
-            <div v-if="scope.row.status === 5">
-              <el-link type="warning">已超时归还</el-link>
             </div>
           </template>
         </el-table-column>
@@ -107,11 +89,11 @@
 
 <script>
 import moment from "moment";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       conditionForm: {
-        userName: "",
         status: ""
       },
       dt: [],
@@ -124,11 +106,11 @@ export default {
           value: 0
         },
         {
-          label: "借出中",
+          label: "借阅中",
           value: 1
         },
         {
-          label: "已拒绝",
+          label: "拒绝借阅",
           value: 2
         },
         {
@@ -142,20 +124,25 @@ export default {
         {
           label: "超时已归还",
           value: 5
-        },
+        }
       ]
     };
   },
   mounted() {
     this.getDt();
   },
+  computed: {
+    ...mapState("user", {
+      userInfo: state => state.userInfo
+    })
+  },
   methods: {
     async getDt() {
       let res = await this.$api.book.borrowList({
         pageSize: this.pageSize,
         pageNumber: this.pageNumber,
-        userName: this.conditionForm.userName,
-        status: this.conditionForm.status,
+        userId: this.userInfo.id,
+        status: this.conditionForm.status
       });
       if (res.status) {
         this.dt = res.data.list.map(item => {
@@ -186,21 +173,6 @@ export default {
     pageChange(v) {
       this.pageNumber = v;
       this.getDt();
-    },
-
-    async handleStatus(status, row) {
-      let params = {
-        status,
-        id: row.id,
-        bookId: row.bookId
-      };
-      let res = await this.$api.book.editBorrowStatus(params);
-      if (res.status) {
-        this.$message.success("操作成功");
-        this.getDt();
-        return;
-      }
-      this.$message.error("操作失败");
     }
   }
 };

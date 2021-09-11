@@ -30,6 +30,11 @@
   justify-content: flex-start;
 }
 
+.flex_jc-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -42,4 +47,8 @@
 }
 .w-400 {
   width: 400px;
+}
+
+.h_per-49 {
+  height: 49%;
 }

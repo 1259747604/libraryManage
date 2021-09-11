@@ -73,7 +73,7 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/chart/index"),
         name: "analyse",
         meta: {
           title: "数据分析",

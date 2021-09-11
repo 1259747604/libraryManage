@@ -130,7 +130,7 @@ export const asyncRoutes = [
     children: [
       {
         path: "index",
-        component: () => import("@/views/testPage/index"),
+        component: () => import("@/views/userManage/index"),
         name: "usermanage",
         meta: { title: "用户管理", icon: "el-icon-user" }
       }

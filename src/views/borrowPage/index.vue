@@ -33,7 +33,6 @@
           class="book"
           v-for="(item, index) of dt"
           :key="item.id"
-          @click="showD(item)"
         >
           <img :src="item.img" alt="" />
           <div class="book-left">
@@ -170,6 +169,10 @@ export default {
       this.getDt();
     },
     showD(item) {
+      if (this.userInfo.isRisk) {
+        this.$message.info("您的账户存在异常，请联系管理员~");
+        return;
+      }
       this.selectBook = item;
       this.visible = true;
     },

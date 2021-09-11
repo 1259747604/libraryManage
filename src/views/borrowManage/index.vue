@@ -31,7 +31,7 @@
       <el-table :data="dt" border style="width: 100%">
         <el-table-column label="书名">
           <template slot-scope="scope">
-            <span>{{ scope.row.book.bookName }}</span>
+            <span>{{ scope.row.book ? scope.row.book.bookName : "未知" }}</span>
           </template>
         </el-table-column>
         <el-table-column prop="userName" label="用户名"> </el-table-column>

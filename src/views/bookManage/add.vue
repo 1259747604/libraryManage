@@ -253,6 +253,8 @@ export default {
 <style lang="scss" scoped>
 .bookAorE {
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .title {
   font-size: 28px;
